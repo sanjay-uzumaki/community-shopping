@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,15 +22,20 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
 
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar=findViewById(R.id.toolBarxz);
+
+        setSupportActionBar(toolbar);
         Button Signin= findViewById(R.id.button);
         Button Register= findViewById(R.id.button2);
         EditText number= findViewById(R.id.number);
         EditText password= findViewById(R.id.password);
         TextView te= findViewById(R.id.textView);
+
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
                             String type=snapshot.child(num).child("type").getValue().toString();
                             if(passwd.equals(pass)){
                                 if(type.equals("Seller"))
-                                    openactivity2();
+                                    openactivity2(num);
                                 else
-                                    openactivity3();;
+                                    openactivity3(num);;
                             }
                         }
                     }
@@ -72,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
     }
-    public void openactivity2(){
-        Intent intent = new Intent(this, Home_Seller.class);
+    public void openactivity2(String phone){
+        Intent intent = new Intent(this, Home_Seller.class).putExtra("phone",phone);
         startActivity(intent);
     }
-    public void openactivity3(){
-        Intent intent = new Intent(this, Home_Buyer.class);
+    public void openactivity3(String phone){
+        Intent intent = new Intent(this, Home_Buyer.class).putExtra("phone",phone);
         startActivity(intent);
     }
 }

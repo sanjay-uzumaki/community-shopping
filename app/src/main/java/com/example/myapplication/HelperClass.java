@@ -1,7 +1,24 @@
 package com.example.myapplication;
 
 public class HelperClass {
-    String name,phone,password,type;
+    String name,phone,password,type,latitude,longitude;
+
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
     public HelperClass() {
 
@@ -15,11 +32,14 @@ public class HelperClass {
         this.type = type;
     }
 
-    public HelperClass(String name, String phone, String password, String type) {
+    public HelperClass(String name, String phone, String password, String type, String latitude, String longitude) {
         this.name = name;
         this.phone = phone;
         this.password = password;
         this.type= type;
+        this.latitude=latitude;
+        this.longitude=longitude;
+
     }
 
     public String getName() {
