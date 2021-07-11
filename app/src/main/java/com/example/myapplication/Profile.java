@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,6 +80,8 @@ public class Profile extends AppCompatActivity {
                 z=FirebaseDatabase.getInstance().getReference("users");
                 z.child(phone).child("password").setValue(passd);
                 z.child(phone).child("name").setValue(name);
+                Toast toast = Toast.makeText(getApplicationContext(),"Updated Successfully",Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 

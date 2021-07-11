@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,25 +24,39 @@ public class Closeup extends AppCompatActivity {
     FirebaseDatabase rootnode;
     DatabaseReference ref;
     TextView name;
-    TextView phones;
+    TextView phones,dist;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closeup);
         name= findViewById(R.id.nos);
+        toolbar=findViewById(R.id.toolBarxzyyy);
+        setSupportActionBar(toolbar);
         phones= findViewById(R.id.pn);
+        dist=findViewById(R.id.nos2);
         Intent intent =getIntent();
         String phone= intent.getStringExtra("phone");
+        dist.setText(intent.getStringExtra("distance")+" Km");
+        Log.d("In Close",phone);
         ref=FirebaseDatabase.getInstance().getReference();
 
 
         ref.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                String hii= datasnapshot.child(phone).child("name").getValue().toString();
-                name.setText(hii);
-                phones.setText(phone);
+
+                    try {
+                        String hii = datasnapshot.child(phone).child("name").getValue().toString();
+                        name.setText(hii);
+                        phones.setText(phone);
+
+                    }
+                    catch (Exception e){
+                        Log.d("Eroro", "onDataChange: ");
+                    }
+
             }
 
 
@@ -52,13 +67,14 @@ public class Closeup extends AppCompatActivity {
         });
 
 
-        Log.d("find", phone);
+
         String name=intent.getStringExtra("name");
         String price=intent.getStringExtra("price");
         re=findViewById(R.id.re2);
-        MyAdapter myAdapter=new MyAdapter(this,phone);
+        MyAdapter myAdapter=new MyAdapter(this,phone,0);
         re.setAdapter(myAdapter);
         re.setLayoutManager(new LinearLayoutManager(this));
 
     }
+
 }

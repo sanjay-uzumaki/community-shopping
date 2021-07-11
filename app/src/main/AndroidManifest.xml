@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
-        <activity android:name=".Closeup"></activity>
+        <activity android:name=".EditItem"></activity>
+        <activity android:name=".Closeup" />
         <activity android:name=".Add_item" />
         <activity android:name=".Profile" />
 

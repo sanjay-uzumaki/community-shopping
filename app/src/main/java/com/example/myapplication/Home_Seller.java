@@ -11,12 +11,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,18 +32,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Home_Seller extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     int count=0;
     String nam[]={"hi","hello"};
     String pric[];
-
     Toolbar toolbar;
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
     RecyclerView re;
     FirebaseDatabase rootnode;
     DatabaseReference ref;
+    Timer mt;
+    int refreshs=0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +66,15 @@ public class Home_Seller extends AppCompatActivity implements NavigationView.OnN
         mDrawerToggle.syncState();
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        MyAdapter myAdapter=new MyAdapter(this,phone);
+        MyAdapter myAdapter=new MyAdapter(this,phone,1);
         re.setAdapter(myAdapter);
         re.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
+
+
     }
 
     @Override
@@ -69,11 +84,15 @@ public class Home_Seller extends AppCompatActivity implements NavigationView.OnN
             openactivity();
         }
         if(id==R.id.add_item){
+            refreshs=1;
             openactivity2();
         }
+        if(id==R.id.logout)
+            openactivity3();
 
         return false;
     }
+
 
 
     public void openactivity(){
@@ -88,12 +107,18 @@ public class Home_Seller extends AppCompatActivity implements NavigationView.OnN
         Intent intent = new Intent(this, Add_item.class).putExtra("phone",phone);
         startActivity(intent);
     }
+    public void openactivity3(){
+        Intent gets= getIntent();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onBackPressed() {
         if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
+
 
 
 

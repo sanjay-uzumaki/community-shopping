@@ -51,6 +51,8 @@ public class Home_Buyer extends AppCompatActivity implements NavigationView.OnNa
         if(id==R.id.profile2){
             openactivity();
         }
+        if(id==R.id.logout2)
+            openactivity3();
         return false;
     }
     @Override
@@ -58,9 +60,7 @@ public class Home_Buyer extends AppCompatActivity implements NavigationView.OnNa
         if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
-        else{
-            super.onBackPressed();
-        }
+
 
 
     }
@@ -68,6 +68,11 @@ public class Home_Buyer extends AppCompatActivity implements NavigationView.OnNa
         Intent gets= getIntent();
         String phone=gets.getStringExtra("phone");
         Intent intent = new Intent(this, Profile.class).putExtra("phone",phone);
+        startActivity(intent);
+    }
+    public void openactivity3(){
+        Intent gets= getIntent();
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

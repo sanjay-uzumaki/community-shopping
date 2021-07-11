@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -53,11 +54,6 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
                             Location location = task.getResult();
-                            try {
-                                TimeUnit.SECONDS.sleep(10);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
                             if (location == null)
                                 phone.setText("Fail");
                             else {
@@ -88,11 +84,17 @@ public class Register extends AppCompatActivity {
                 ref=rootnode.getReference("users/"+num);
                 HelperClass data = new HelperClass(names,num,passwo,types,latitude,longitude);
                 ref.setValue(data);
-                
+                count=count+1;
+                if(count==3){
+                    openactivity();
+                }
             }
         });
     }
-
+    public void openactivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 
 

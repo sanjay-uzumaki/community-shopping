@@ -36,6 +36,7 @@ public class Add_item extends AppCompatActivity {
     Uri filePath;
     Bitmap bitmap;
     ImageView im;
+    String img,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,8 @@ public class Add_item extends AppCompatActivity {
         im= findViewById(R.id.imageView);
         st=FirebaseStorage.getInstance();
         sr=st.getReference();
+        Intent intent=getIntent();
+        phone=intent.getStringExtra("phone");
         setSupportActionBar(toolbar);
         EditText name= findViewById(R.id.namep);
         EditText price=findViewById(R.id.price);
@@ -53,7 +56,8 @@ public class Add_item extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imref= sr.child("images/"+ UUID.randomUUID().toString());
+                img="images/"+ UUID.randomUUID().toString();
+                imref= sr.child(img);
                 imref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -71,8 +75,10 @@ public class Add_item extends AppCompatActivity {
                 String phone = gets.getStringExtra("phone");
                 rootnode = FirebaseDatabase.getInstance();
                 ref = rootnode.getReference("feeds/" + phone + "/" + names);
-                HelperClass2 data = new HelperClass2(names, prices, phone);
+                HelperClass2 data = new HelperClass2(names, prices, phone,img);
                 ref.setValue(data);
+                Toast toast=Toast.makeText(getApplicationContext(),"Item Added Successfully",Toast.LENGTH_SHORT);
+                toast.show();
 
             }
         });
@@ -89,25 +95,29 @@ public class Add_item extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Home_Seller.class).putExtra("phone",phone);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data)
     {
 
         super.onActivityResult(requestCode,resultCode,data);
 
-        // checking request code and result code
-        // if request code is PICK_IMAGE_REQUEST and
-        // resultCode is RESULT_OK
-        // then set image in the image view
+
         if (requestCode == 1
                 && resultCode == RESULT_OK
                 && data != null
                 && data.getData() != null) {
 
-            // Get the Uri of data
+
             filePath = data.getData();
             try {
 
-                // Setting image on image view using Bitmap
+
                 bitmap = MediaStore
                         .Images
                         .Media
@@ -119,7 +129,7 @@ public class Add_item extends AppCompatActivity {
             }
 
             catch (IOException e) {
-                // Log the exception
+
                 e.printStackTrace();
             }
         }

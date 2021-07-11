@@ -3,6 +3,7 @@ package com.example.myapplication;
 public class HelperClass2 {
     String name;
     String price;
+    String img;
 
     public String getName() {
         return name;
@@ -28,10 +29,19 @@ public class HelperClass2 {
         this.phone = phone;
     }
 
-    public HelperClass2(String name, String price, String phone) {
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public HelperClass2(String name, String price, String phone, String img) {
         this.name = name;
         this.price = price;
         this.phone = phone;
+        this.img=img;
     }
 
     String phone;
