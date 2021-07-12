@@ -36,12 +36,16 @@ public class EditItem extends AppCompatActivity {
     EditText name,price;
     Button upload,update;
     ImageView img;
+    String phone;
     FirebaseStorage st;
     DatabaseReference ref,z;
     StorageReference sr, image,imref;
     Bitmap bitmap;
     String names,file;
     Uri filePath;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,7 @@ public class EditItem extends AppCompatActivity {
         update=findViewById(R.id.UpdateItem);
         img=findViewById(R.id.imgg);
         names= intent.getStringExtra("name");
-        String phone=intent.getStringExtra("phone");
+        phone=intent.getStringExtra("phone");
         String prices=intent.getStringExtra("price");
         ref=FirebaseDatabase.getInstance().getReference("feeds");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,6 +131,14 @@ public class EditItem extends AppCompatActivity {
             }
         });
 
+    }
+    public void openactivity(String phone){
+        Intent intent = new Intent(this, Home_Seller.class).putExtra("phone",phone);
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        openactivity(phone);
     }
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data)
