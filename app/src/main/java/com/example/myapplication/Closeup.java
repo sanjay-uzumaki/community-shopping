@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +29,7 @@ public class Closeup extends AppCompatActivity {
     TextView name;
     TextView phones,dist;
     Toolbar toolbar;
-
+    Button call;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,16 @@ public class Closeup extends AppCompatActivity {
         String phone= intent.getStringExtra("phone");
         dist.setText(intent.getStringExtra("distance")+" Km");
         Log.d("In Close",phone);
+        call=findViewById(R.id.button5);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ph=phones.getText().toString();
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:"+ph));
+                startActivity(callIntent);
+            }
+        });
         ref=FirebaseDatabase.getInstance().getReference();
 
 

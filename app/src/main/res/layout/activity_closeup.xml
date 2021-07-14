@@ -7,24 +7,27 @@
     tools:context=".Closeup"
     android:background="#feeae6">
 
-   <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarxzyyy"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/toolBarxzyyy"
+            android:layout_margin="4dp"
+            android:background="@drawable/tool_bar_style"
+            android:elevation="3dp"
             app:title="Seller Info"
             app:titleTextColor="@color/whiteColor"
-            android:elevation="3dp"
-            android:background="@drawable/tool_bar_style"
-            android:layout_margin="4dp"
 
             />
+
         <FrameLayout
+            android:id="@+id/frame_layoutsz"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/frame_layoutsz" >
+            android:layout_height="match_parent">
 
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -99,6 +102,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.203" />
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call "
+        app:layout_constraintBottom_toBottomOf="@+id/coordinatorLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
     <TextView
         android:id="@+id/pn"
         android:layout_width="wrap_content"
@@ -118,5 +133,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

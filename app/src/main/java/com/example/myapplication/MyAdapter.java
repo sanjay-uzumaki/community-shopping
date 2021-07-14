@@ -167,6 +167,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             }
         });
+        Log.d("IN GET", "getItemCount: "+count);
         return count;
     }
 
