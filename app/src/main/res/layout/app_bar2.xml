@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/toolBar2"
-        app:title="Community Shopping - Consumer"
+        app:title="Community Shopping - Costumer"
         app:titleTextColor="@color/whiteColor"
         android:elevation="3dp"
         android:background="@drawable/tool_bar_style"

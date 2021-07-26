@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="buttonStyle">@style/btns</item>
     </style>
     <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
@@ -23,5 +24,10 @@
     <style name="DrawerColor" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/whiteColor</item>
     </style>
-    
+
+    <style name="btns" parent="">
+
+    </style>
+
+
 </resources>
