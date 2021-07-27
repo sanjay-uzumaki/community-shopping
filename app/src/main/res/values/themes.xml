@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="buttonStyle">@style/btns</item>
+
     </style>
     <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
@@ -20,13 +20,19 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="drawerArrowStyle">@style/DrawerColor</item>
+        <item name="android:buttonStyle">@style/CKButton</item>
     </style>
     <style name="DrawerColor" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/whiteColor</item>
     </style>
 
-    <style name="btns" parent="">
 
+
+
+    <style name="CKButton" parent="android:style/Widget.Button">
+        <item name="android:textSize">19sp</item>
+        <item name="android:layout_margin">0dip</item>
+        <item name="android:background">#ff0000</item>
     </style>
 
 
