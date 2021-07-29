@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -55,7 +56,8 @@ public class Register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Location> task) {
                             Location location = task.getResult();
                             if (location == null)
-                                phone.setText("Fail");
+                                Log.d("Location", "onComplete: Location Fail");
+                                //phone.setText("Fail");
                             else {
                                 Double lats=location.getLatitude();
                                 Double longit=location.getLongitude();
