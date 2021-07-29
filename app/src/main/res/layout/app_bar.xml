@@ -8,7 +8,7 @@
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/toolBar"
         app:title="Community Shopping - Seller"
-        app:titleTextColor="@color/whiteColor"
+
         android:elevation="3dp"
         android:background="@drawable/tool_bar_style"
         android:layout_margin="4dp"
